@@ -36,3 +36,6 @@ class EthernetPacket(object):
             34525:"IPv6",
         }
         return _type.get(int(self.packet.type),"未解析")
+
+    def getData(self):
+        return self.packet.data
