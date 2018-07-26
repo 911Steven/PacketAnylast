@@ -31,9 +31,12 @@ class Sniffer(object):
     def Anylast_Packet_Handler(self):
         for time,packet in self.sniffer:
             packet = EthernetPacket(packet)
-
-            packet = IPNetworkAnylast(packet.getData())
-            packet.getType()
+            if packet.getType() == "IPv4":
+                packet = IPNetworkAnylast(packet.getData())
+                print packet.getSrc()
+                print packet.getDst()
+                print packet.getProcotol()
+                print packet.getOther()
             #pass
 
 if __name__ == "__main__":
