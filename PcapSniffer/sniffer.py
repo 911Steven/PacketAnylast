@@ -14,6 +14,9 @@ sys.path.append("..")
 import pcap
 from ProtocolAnylast.Ethernet.EthernetAnylast import EthernetPacket
 from ProtocolAnylast.IPNetwork.IPAnylast import IPNetworkAnylast
+from ProtocolAnylast.Transport.TcpAnylast import TcpAnylast
+from ProtocolAnylast.Transport.UdpAnylast import UdpAnylast
+from ProtocolAnylast.Transport.IcmpAnylast import IcmpAnylast
 
 
 # 定义嗅探器
@@ -33,10 +36,12 @@ class Sniffer(object):
             packet = EthernetPacket(packet)
             if packet.getType() == "IPv4":
                 packet = IPNetworkAnylast(packet.getData())
-                print packet.getSrc()
-                print packet.getDst()
-                print packet.getProcotol()
-                print packet.getOther()
+                if packet.getProcotol() == 'ICMP':
+                    packet = IcmpAnylast(packet.getData())
+                    print packet.getCode()
+                    print packet.getType()
+                    print packet.getData()
+
             #pass
 
 if __name__ == "__main__":
