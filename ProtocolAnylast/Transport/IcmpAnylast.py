@@ -16,7 +16,6 @@ class IcmpAnylast(object):
 
     def getCode(self):
         '''返回ICMP Code'''
-        help(self.packet)
         return self.packet.code
 
     def getType(self):

@@ -16,7 +16,6 @@ class UdpAnylast(object):
 
     def getSrc(self):
         '''返回源端口'''
-        help(self.packet)
         return self.packet.sport
 
     def getDst(self):
